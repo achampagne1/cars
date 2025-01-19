@@ -1,67 +1,37 @@
-import './GraphStyle.css';
-import React from "react";
-import { Scatter } from "react-chartjs-2";
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from "chart.js";
+import React from 'react';
+import { Scatter } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
 // Register Chart.js components
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const Graph = ({ dataPoints }) => {
-    const scatterData = dataPoints.map((point) => ({ x: point.x, y: point.y }));
-
-    const data = {
+const Graph = ({ dataPoints, bestFitCurve }) => {
+    const chartData = {
         datasets: [
             {
-                label: "Scatter Data Points",
-                data: scatterData,
-                backgroundColor: "rgba(75, 192, 192, 0.8)", // Marker color
-                pointRadius: 5, // Marker size
+                label: 'Original Data',
+                data: dataPoints,
+                backgroundColor: 'rgba(75, 192, 192, 1)',
+                pointRadius: 5,
+            },
+            {
+                label: 'Best Fit Curve',
+                data: bestFitCurve,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 2,
+                showLine: true,
+                pointRadius: 0,
             },
         ],
     };
 
     const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: true,
-                position: "top",
-            },
-        },
         scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: "X-Axis Label",
-                },
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: "Y-Axis Label",
-                },
-            },
+            x: { type: 'linear', position: 'bottom' },
         },
     };
 
-    return <Scatter data={data} options={options} />;
+    return <Scatter data={chartData} options={options} />;
 };
 
 export default Graph;
