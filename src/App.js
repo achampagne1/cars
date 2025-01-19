@@ -1,17 +1,28 @@
 import './App.css';
 import Dropdown from './components/Dropdown';
 import Graph from "./components/Graph";
+import { Amplify } from 'aws-amplify';
+import { downloadData } from '@aws-amplify/storage';
+import awsconfig from "./aws-exports";
+import { useState, useEffect } from "react";
+import { dataConverter } from "./helpers/DataConverter"
 
-
+Amplify.configure(awsconfig);
 
 function App() {
-    const dataPoints = [
-        { x: 1, y: 2 },
-        { x: 2, y: 4 },
-        { x: 3, y: 8 },
-        { x: 4, y: 16 },
-        { x: 5, y: 32 },
-    ];
+    const [dataPoints, setDataPoints] = useState([]);
+
+    const fetchDataFromS3 = async () => {
+        const downloadResult = await downloadData({path: 'ghibli.json',}).result;
+        const data = await downloadResult.body.text();
+        const jsonData = JSON.parse(data);
+        setDataPoints(dataConverter(jsonData));
+        console.log(dataPoints);
+    };
+
+    useEffect(() => {
+        fetchDataFromS3();
+    }, []);
 
     return (
         <div className="App">

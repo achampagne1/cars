@@ -1,0 +1,12 @@
+{
+  "resourceName": "cardata",
+  "policyUUID": "bc22752d",
+  "bucketName": "cars250ceed826f344fdba2c2d9a0645bb10",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
