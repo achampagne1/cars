@@ -9,18 +9,18 @@ const Graph = ({ dataPoints, bestFitCurve }) => {
     const chartData = {
         datasets: [
             {
-                label: 'Original Data',
-                data: dataPoints,
-                backgroundColor: 'rgba(75, 192, 192, 1)',
-                pointRadius: 5,
-            },
-            {
                 label: 'Best Fit Curve',
                 data: bestFitCurve,
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 2,
                 showLine: true,
                 pointRadius: 0,
+            },
+            {
+                label: 'Original Data',
+                data: dataPoints,
+                backgroundColor: 'rgba(75, 192, 192, 1)',
+                pointRadius: 5,
             },
         ],
     };

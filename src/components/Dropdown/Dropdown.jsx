@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./DropdownStyle.css"; 
+import "./DropdownStyle.css";
 
-function Dropdown() {
+function Dropdown({ options, onChange }) { // Accept options and onChange as props
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -15,9 +15,18 @@ function Dropdown() {
             </button>
             {isOpen && (
                 <ul className="dropdown-menu">
-                    <li className="dropdown-item">Option 1</li>
-                    <li className="dropdown-item">Option 2</li>
-                    <li className="dropdown-item">Option 3</li>
+                    {options.map((option, index) => (
+                        <li
+                            key={index}
+                            className="dropdown-item"
+                            onClick={() => {
+                                onChange({ target: { value: option } }); // Simulate a change event
+                                setIsOpen(false); // Close dropdown after selection
+                            }}
+                        >
+                            {option}
+                        </li>
+                    ))}
                 </ul>
             )}
         </div>

@@ -13,10 +13,11 @@ Amplify.configure(awsconfig);
 function App() {
     const [dataPoints, setDataPoints] = useState([]);
     const [bestFitCurve, setBestFitCurve] = useState([]);
+    const [selectedOption, setSelectedOption] = useState('ghibli');
 
-    const fetchDataFromS3 = async () => {
+    const fetchDataFromS3 = async (path) => {
         try {
-            const downloadResult = await downloadData({ path: 'ghibli.json' }).result;
+            const downloadResult = await downloadData({ path: `${path}.json` }).result;
             const data = await downloadResult.body.text();
             const jsonData = JSON.parse(data);
 
@@ -25,8 +26,11 @@ function App() {
             setDataPoints(convertedData);
 
             // Perform polynomial regression
-            const regression = new PolynomialRegression(convertedData.map(point => point.x), convertedData.map(point => point.y), 5);
-
+            const regression = new PolynomialRegression(
+                convertedData.map(point => point.x),
+                convertedData.map(point => point.y),
+                5
+            );
 
             // Generate a smooth curve
             const xValues = convertedData.map(point => point.x);
@@ -34,11 +38,11 @@ function App() {
             const maxX = Math.max(...xValues);
             const curvePoints = [];
 
-            for (let x = minX; x <= maxX; x += (maxX - minX) / 500) { // Generate 500 points for smoothness
+            for (let x = minX; x <= maxX; x += (maxX - minX) / 500) {
                 const y = regression.predict(x);
                 curvePoints.push({ x, y });
             }
-            console.log(curvePoints);
+
             setBestFitCurve(curvePoints);
         } catch (error) {
             console.error("Error fetching data from S3:", error);
@@ -46,12 +50,21 @@ function App() {
     };
 
     useEffect(() => {
-        fetchDataFromS3();
-    }, []);
+        fetchDataFromS3(selectedOption);
+    }, [selectedOption]);
+
+    // Define the handleSelect function
+    const handleSelect = (event) => {
+        setSelectedOption(event.target.value);
+    };
 
     return (
         <div className="App">
             <h1>Graph Example</h1>
+            <Dropdown
+                options={["leaf", "ghibli","levonte"]}
+                onChange={handleSelect} // Use the dedicated handleSelect function
+            />
             <Graph dataPoints={dataPoints} bestFitCurve={bestFitCurve} />
         </div>
     );
