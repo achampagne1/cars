@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import './GraphContainerStyle.css';
 
 const GraphContainer = () => {
-    const { selectedOption } = useContext(Context);
+    const { selectedMake } = useContext(Context);
     const [dataPoints, setDataPoints] = useState([]);
     const [bestFitCurve, setBestFitCurve] = useState([]);
 
@@ -27,8 +27,9 @@ const GraphContainer = () => {
     };
 
     useEffect(() => {
-        graphHandle(selectedOption);
-    }, [selectedOption]);
+        graphHandle('ghibli');
+        console.log(selectedMake);
+    }, [selectedMake]);
 
 
     return (

@@ -1,5 +1,5 @@
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import DropdownContainer from './components/DropdownContainer'
 import { ContextProvider } from './ContextProvider';
 import GraphContainer from "./components/GraphContainer";
