@@ -2,10 +2,9 @@ import React from "react";
 import Dropdown from '../Dropdown';
 import './DropdownContainerStyle.css';
 
-function DropdownContainer({ options, onChange }) { 
-
+const DropdownContainer = () => {
     return (
-        <Dropdown options={options} onChange={onChange} />
+        <Dropdown options={["leaf", "ghibli", "levonte", "crv", "escape", "q8"]} />
     );
 }
 

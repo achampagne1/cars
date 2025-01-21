@@ -1,6 +1,6 @@
 import { dataConverter } from "./DataConverter";
 import { PolynomialRegression } from 'ml-regression-polynomial';
-export function graphHelper(jsonData) {
+export const graphHelper = (jsonData) =>{
     const convertedData = dataConverter(jsonData);
 
     const regression = new PolynomialRegression(convertedData.map(point => point.x), convertedData.map(point => point.y), 5);

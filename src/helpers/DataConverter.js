@@ -1,4 +1,4 @@
-export function dataConverter(dataArray) {
+export const dataConverter = (dataArray) => {
     // Map the data to the required format
     return dataArray.map(item => {
         // Assuming mileage is at index 6 and price is at index 7

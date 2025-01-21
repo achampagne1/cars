@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../../ContextProvider'
 import Graph from '../Graph';
 import { downloadData } from '@aws-amplify/storage';
 import { graphHelper } from "../../helpers/GraphHelper";
 import { useState, useEffect } from "react";
 import './GraphContainerStyle.css';
 
-function GraphContainer({ selectedOption }) {
+const GraphContainer = () => {
+    const { selectedOption } = useContext(Context);
     const [dataPoints, setDataPoints] = useState([]);
     const [bestFitCurve, setBestFitCurve] = useState([]);
 

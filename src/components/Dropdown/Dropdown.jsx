@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context} from '../../ContextProvider'
 import "./DropdownStyle.css";
 
-function Dropdown({ options, onChange }) { // Accept options and onChange as props
+const Dropdown = ({ options}) =>{ // Accept options and onChange as props
     const [isOpen, setIsOpen] = useState(false);
+    const { setSelectedOption } = useContext(Context);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -20,7 +22,7 @@ function Dropdown({ options, onChange }) { // Accept options and onChange as pro
                             key={index}
                             className="dropdown-item"
                             onClick={() => {
-                                onChange({ target: { value: option } }); // Simulate a change event
+                                setSelectedOption(option);
                                 setIsOpen(false); // Close dropdown after selection
                             }}
                         >
