@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
+import Dropdown from '../Dropdown';
 import './DropdownContainerStyle.css';
 
-const DropdownContainer = () => {
-    return (
-        <div className="DropdownContainer">
+function DropdownContainer({ options, onChange }) { 
 
-        </div>
+    return (
+        <Dropdown options={options} onChange={onChange} />
     );
-};
+}
 
 export default DropdownContainer;
