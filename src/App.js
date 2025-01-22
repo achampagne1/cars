@@ -14,7 +14,7 @@ const App = () => {
     return (
         <ContextProvider>
             <div className="App">
-                <h1>Graph Example</h1>
+                <h1>Used Car Depreciation Grapher</h1>
                 <DropdownContainer/>
                 <GraphContainer dataPoints />
             </div>

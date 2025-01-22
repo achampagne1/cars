@@ -11,7 +11,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "cardata": {
+    "cars": {
       "BucketName": "string",
       "Region": "string"
     }

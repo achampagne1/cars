@@ -14,9 +14,27 @@
     "categories": {
       "auth": {
         "cars8498c80a": {}
+      }
+    }
+  },
+  "cars": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cars-cars-de56e-authRole",
+      "UnauthRoleArn": "arn:aws:iam::905418196226:role/amplify-cars-cars-de56e-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::905418196226:role/amplify-cars-cars-de56e-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-cars-cars-de56e-deployment",
+      "UnauthRoleName": "amplify-cars-cars-de56e-unauthRole",
+      "StackName": "amplify-cars-cars-de56e",
+      "StackId": "arn:aws:cloudformation:us-east-2:905418196226:stack/amplify-cars-cars-de56e/e5fac3f0-d873-11ef-97b9-02658a030857",
+      "AmplifyAppId": "d3f9k3c3onrjv8"
+    },
+    "categories": {
+      "auth": {
+        "cars8498c80a": {}
       },
       "storage": {
-        "cardata": {}
+        "cars": {}
       }
     }
   }

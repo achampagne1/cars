@@ -8,6 +8,8 @@ import './GraphContainerStyle.css';
 
 const GraphContainer = () => {
     const { selectedMake } = useContext(Context);
+    const { selectedModel } = useContext(Context);
+    const { selectedYear } = useContext(Context);
     const [dataPoints, setDataPoints] = useState([]);
     const [bestFitCurve, setBestFitCurve] = useState([]);
 
@@ -27,9 +29,9 @@ const GraphContainer = () => {
     };
 
     useEffect(() => {
-        graphHandle('ghibli');
-        console.log(selectedMake);
-    }, [selectedMake]);
+        const fullCar = selectedMake + selectedModel + selectedYear;
+        graphHandle(fullCar);
+    }, [selectedYear]);
 
 
     return (

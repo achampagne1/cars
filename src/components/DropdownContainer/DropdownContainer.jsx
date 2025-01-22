@@ -1,36 +1,32 @@
 import React, { useState, useContext } from "react";
-import { Context } from '../../ContextProvider'
+import { Context } from '../../ContextProvider';
 import './DropdownContainerStyle.css';
 
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import CarModels from './CarModels.json'
 
 const DropdownContainer = () => {
     // States for selected values
     const [selectedMake, setSelectedMake] = useState("");
     const [modelOptions, setModelOptions] = useState([]);
     const [selectedModel, setSelectedModel] = useState("");
+    const [yearOptions, setYearOptions] = useState([]);
     const [selectedYear, setSelectedYear] = useState("");
+
     const { setSelectedMakeContext } = useContext(Context);
     const { setSelectedModelContext } = useContext(Context);
     const { setSelectedYearContext } = useContext(Context);
-
-    // Define options for "Make" and "Year"
-    const makeOptions = [
-        { value: "Toyota", models: ["Corolla", "Camry", "RAV4"] },
-        { value: "Honda", models: ["Civic", "Accord", "CR-V"] },
-        { value: "Ford", models: ["F-150", "Escape", "Explorer"] },
-    ];
-    const yearOptions = ["2021", "2022", "2023"];
 
     // Handle selecting a "Make"
     const handleMakeSelect = (make) => {
         setSelectedMake(make); // Update selected make
         setSelectedMakeContext(make);
-        const foundMake = makeOptions.find((option) => option.value === make);
+        const foundMake = CarModels.find((option) => option.value === make);
         setModelOptions(foundMake ? foundMake.models : []); // Update model options
         setSelectedModel(""); // Reset model selection
+        setYearOptions([]); // Reset year options
         setSelectedYear(""); // Reset year selection
     };
 
@@ -38,6 +34,9 @@ const DropdownContainer = () => {
     const handleModelSelect = (model) => {
         setSelectedModel(model);
         setSelectedModelContext(model);
+        const foundModel = CarModels.find((option) => option.value === selectedMake)?.models.find((option) => option.name === model);
+        setYearOptions(foundModel ? foundModel.year : []); // Update year options
+        setSelectedYear(""); // Reset year selection
     };
 
     // Handle selecting a "Year"
@@ -55,7 +54,7 @@ const DropdownContainer = () => {
                 title={selectedMake || "Select Make"}
                 onSelect={handleMakeSelect}
             >
-                {makeOptions.map((make) => (
+                {CarModels.map((make) => (
                     <Dropdown.Item key={make.value} eventKey={make.value}>
                         {make.value}
                     </Dropdown.Item>
@@ -71,8 +70,8 @@ const DropdownContainer = () => {
                 onSelect={handleModelSelect}
             >
                 {modelOptions.map((model, index) => (
-                    <Dropdown.Item key={index} eventKey={model}>
-                        {model}
+                    <Dropdown.Item key={index} eventKey={model.name}>
+                        {model.name}
                     </Dropdown.Item>
                 ))}
             </DropdownButton>
@@ -81,7 +80,8 @@ const DropdownContainer = () => {
             <DropdownButton
                 as={ButtonGroup}
                 id="dropdown-year"
-                title={selectedYear || "Select Year"}
+                title={selectedYear || (yearOptions.length > 0 ? "Select Year" : "No Years Available")}
+                disabled={yearOptions.length === 0}
                 onSelect={handleYearSelect}
             >
                 {yearOptions.map((year, index) => (

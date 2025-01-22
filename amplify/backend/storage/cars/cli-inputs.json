@@ -1,0 +1,14 @@
+{
+  "resourceName": "cars",
+  "policyUUID": "bfc77cc2",
+  "bucketName": "carsda1411ac6b0b4de8b8003fe5d8ad70f1",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
