@@ -9,7 +9,7 @@ const Graph = ({ dataPoints, bestFitCurve }) => {
     const chartData = {
         datasets: [
             {
-                label: 'Average Price ($)',
+                label: 'Average Price',
                 data: bestFitCurve,
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 2,
@@ -17,7 +17,7 @@ const Graph = ({ dataPoints, bestFitCurve }) => {
                 pointRadius: 0,
             },
             {
-                label: 'Individual Listings (Miles)',
+                label: 'Individual Listings',
                 data: dataPoints,
                 backgroundColor: 'rgba(75, 192, 192, 1)',
                 pointRadius: 5,
@@ -27,7 +27,20 @@ const Graph = ({ dataPoints, bestFitCurve }) => {
 
     const options = {
         scales: {
-            x: { type: 'linear', position: 'bottom' },
+            x: {
+                type: 'linear',
+                position: 'bottom',
+                title: {
+                    display: true,
+                    text: 'Miles', // Customize the x-axis label text
+                },
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Dollars', // Customize the y-axis label text
+                },
+            },
         },
     };
 
