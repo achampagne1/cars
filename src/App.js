@@ -6,7 +6,6 @@ import GraphContainer from "./components/GraphContainer";
 import { Amplify } from 'aws-amplify';
 import awsconfig from "./aws-exports";
 
-
 Amplify.configure(awsconfig);
 
 const App = () => {
@@ -15,8 +14,10 @@ const App = () => {
         <ContextProvider>
             <div className="App">
                 <h1>Used Car Depreciation Grapher</h1>
-                <DropdownContainer/>
-                <GraphContainer dataPoints />
+                <DropdownContainer />
+                <div className="graph-container">
+                    <GraphContainer dataPoints />
+                </div>
             </div>
         </ContextProvider>
     );
