@@ -22,12 +22,20 @@ body {
     padding: 20px;
 }
 
+.App h1 {
+    font-weight: bold; /* Makes the text bold */
+}
+
+.dropdown-container {
+    margin-bottom: 10px; 
+}
+
 
 
 .graph-container {
     background-color: white;
-    padding: 20px;
+    padding: 5px;
     border-radius: 8px;
-    width: 1250px;
-    height: 650px;
+    width: 1000px;
+    height: 500px;
 }

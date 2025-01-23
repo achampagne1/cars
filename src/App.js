@@ -13,8 +13,10 @@ const App = () => {
     return (
         <ContextProvider>
             <div className="App">
-                <h1>Used Car Depreciation Grapher</h1>
-                <DropdownContainer />
+                <h1>Take the hassle out of buying a car</h1>
+                <div className="dropdown-container">
+                    <DropdownContainer />
+                </div>
                 <div className="graph-container">
                     <GraphContainer dataPoints />
                 </div>

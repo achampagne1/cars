@@ -9,7 +9,7 @@ const Graph = ({ dataPoints, bestFitCurve }) => {
     const chartData = {
         datasets: [
             {
-                label: 'Best Fit Curve',
+                label: 'Average Price',
                 data: bestFitCurve,
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 2,
@@ -17,7 +17,7 @@ const Graph = ({ dataPoints, bestFitCurve }) => {
                 pointRadius: 0,
             },
             {
-                label: 'Original Data',
+                label: 'Individual Listings',
                 data: dataPoints,
                 backgroundColor: 'rgba(75, 192, 192, 1)',
                 pointRadius: 5,
