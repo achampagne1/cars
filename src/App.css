@@ -1,4 +1,11 @@
 
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -11,26 +18,23 @@ body {
 }
 
 
-.App {
+.body {
     display: flex;
-    flex-direction: column; /* Stacks elements vertically */
-    justify-content: center; /* Centers vertically */
-    align-items: center; /* Centers horizontally */
-    min-height: 100vh; /* Ensures full viewport height */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     text-align: center;
     color: white;
-    padding: 20px;
 }
 
-.App h1 {
-    font-weight: bold; /* Makes the text bold */
+.body h1 {
+    font-weight: bold;
 }
 
 .dropdown-container {
     margin-bottom: 10px; 
 }
-
-
 
 .graph-container {
     background-color: white;
@@ -38,4 +42,43 @@ body {
     border-radius: 8px;
     width: 1000px;
     height: 500px;
+}
+
+.footer {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 5px 0; 
+    position: relative;
+    bottom: 0;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+    padding: 5px 0; /* Add padding between paragraphs if multiple */
+}
+
+.popup-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.popup-button:hover {
+    background-color: #00AEEF;
+    color: #000000;
+}
+
+.popup-content {
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
 }
