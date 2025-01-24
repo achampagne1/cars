@@ -8,7 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const DropdownContainer = () => {
-    // States for selected values
+    //states
     const [selectedMake, setSelectedMake] = useState("");
     const [modelOptions, setModelOptions] = useState([]);
     const [selectedModel, setSelectedModel] = useState("");
@@ -16,40 +16,42 @@ const DropdownContainer = () => {
     const [selectedYear, setSelectedYear] = useState("");
     const [carModels, setCarModels] = useState([]);
 
+    //context used by graph for getting the data
     const { setSelectedMakeContext } = useContext(Context);
     const { setSelectedModelContext } = useContext(Context);
     const { setSelectedYearContext } = useContext(Context);
 
+    //grabs CarModels from the bucket
     useEffect(() => {
         const fetchCarModels = async () => {
             const models = await getFileFromS3("CarModels");
-            setCarModels(models || []); // Set carModels once the data is resolved
+            setCarModels(models || []);
         };
 
         fetchCarModels();
-    }, []); // Empty dependency array to run only once on component mount
+    }, []); 
 
-    // Handle selecting a "Make"
+
     const handleMakeSelect = (make) => {
-        setSelectedMake(make); // Update selected make
+        setSelectedMake(make);
         setSelectedMakeContext(make);
         const foundMake = carModels.find((option) => option.value === make);
-        setModelOptions(foundMake ? foundMake.models : []); // Update model options
-        setSelectedModel(""); // Reset model selection
-        setYearOptions([]); // Reset year options
-        setSelectedYear(""); // Reset year selection
+        setModelOptions(foundMake ? foundMake.models : []); 
+        setSelectedModel(""); 
+        setYearOptions([]); 
+        setSelectedYear("");
     };
 
-    // Handle selecting a "Model"
+
     const handleModelSelect = (model) => {
         setSelectedModel(model);
         setSelectedModelContext(model);
         const foundModel = carModels.find((option) => option.value === selectedMake)?.models.find((option) => option.name === model);
-        setYearOptions(foundModel ? foundModel.year : []); // Update year options
-        setSelectedYear(""); // Reset year selection
+        setYearOptions(foundModel ? foundModel.year : []); 
+        setSelectedYear(""); 
     };
 
-    // Handle selecting a "Year"
+
     const handleYearSelect = (year) => {
         setSelectedYear(year);
         setSelectedYearContext(year);

@@ -23,8 +23,9 @@ const GraphContainer =() => {
     };
 
     useEffect(() => {
-        const fullCar = selectedMake + selectedModel + selectedYear;
-        if (fullCar !== 'nonenonenone') {
+        const fullCar = selectedMake + '_' + selectedModel + '_' + selectedYear;
+        console.log(fullCar);
+        if (fullCar !== 'none_none_none') {
             graphHandle(fullCar);
         }
     }, [selectedYear]);
