@@ -3,23 +3,13 @@ import './App.css';
 import DropdownContainer from './components/DropdownContainer'
 import { ContextProvider } from './ContextProvider';
 import GraphContainer from "./components/GraphContainer";
+import PopupContainer from "./components/PopupContainer";
 import { Amplify } from 'aws-amplify';
 import awsconfig from "./aws-exports";
-import React, { useState, useEffect } from 'react';
-import Popup from 'reactjs-popup';
 
 Amplify.configure(awsconfig);
 
 const App = () => {
-    const [privacyPolicyContent, setPrivacyPolicyContent] = useState('');
-
-    useEffect(() => {
-        // Fetch the privacy policy file from the public directory
-        fetch('/privacypolicy.txt')
-            .then(response => response.text()) // Read the text content of the file
-            .then(text => setPrivacyPolicyContent(text)) // Update state with the file's content
-            .catch(error => console.error('Error fetching privacy policy:', error)); // Handle errors
-    }, []);
 
     return (
         <ContextProvider>
@@ -34,16 +24,7 @@ const App = () => {
                     </div>
                 </div>
                 <div className="footer">
-                    <div>
-                        <Popup trigger={<button className="popup-button">Privacy Policy</button>} modal >
-                            {close => (
-                                <div className="popup-content">
-                                    <p>{privacyPolicyContent}</p>
-                                    <button onClick={close}>Close</button>
-                                </div> 
-                            )}
-                        </Popup>
-                    </div>
+                    <PopupContainer/>
                     <p>&copy; 2025 Auto Hassle. All rights reserved.</p>
                 </div>
             </div>
