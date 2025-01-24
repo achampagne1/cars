@@ -1,3 +1,10 @@
 .DropdownContainer {
-    /* Add your styles here */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: row; /* Stack the dropdowns vertically */
+    align-items: flex-start; /* Align dropdowns to the left */
+    gap: 10px; /* Add space between the dropdowns */
+}
+
+.DropdownContainer .dropdown-button {
+    width: 200px; /* Optional: Set a consistent width for dropdowns */
 }

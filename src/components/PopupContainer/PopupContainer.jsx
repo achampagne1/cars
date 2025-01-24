@@ -15,7 +15,7 @@ const PopupContainer = () => {
 
     return (
         <div className="PopupContainer">
-            <Popup trigger={<button className="popup-button">Privacy Policy</button>} modal >
+            <Popup trigger={<button className="popup-button">Privacy Policy</button>} modal overlayClassName="popup-overlay">
                 {close => (
                     <div className="popup-content">
                         <p>{privacyPolicyContent}</p>
