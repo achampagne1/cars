@@ -19,9 +19,7 @@ const App = () => {
                     <div className="dropdown-container">
                         <DropdownContainer />
                     </div>
-                    <div className="graph-container">
-                        <GraphContainer dataPoints />
-                    </div>
+                    <GraphContainer dataPoints />
                 </div>
                 <div className="footer">
                     <PopupContainer/>
