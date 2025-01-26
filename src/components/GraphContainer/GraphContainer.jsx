@@ -52,8 +52,7 @@ const GraphContainer =() => {
                     break;
                 }
             }
-            console.log(filteredData.length)
-            //graphHandle(getUniqueEntries(filteredData,1000));
+            graphHandle(getUniqueEntries(filteredData,1000));
         }
     }, [selectedYear]);
 
