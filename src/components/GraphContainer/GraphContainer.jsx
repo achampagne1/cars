@@ -13,23 +13,47 @@ const GraphContainer =() => {
 
     const [dataPoints, setDataPoints] = useState([]);
     const [bestFitCurve, setBestFitCurve] = useState([]);
-    const [fullCar, setFullCar] = useState('none_none_none');
+    const [carData, setCarData] = useState(null);
+    const [fullCar, setFullCar] = useState('none_none');
 
-    const graphHandle = async (path) => {
-        const jsonData = await getFileFromS3(path);
-        if (jsonData != null) { 
-            const { convertedData, curvePoints } = graphHelper(jsonData);
-            setDataPoints(convertedData);
-            setBestFitCurve(curvePoints);
-        }
+    const graphHandle = (filteredData) => {
+        const { convertedData, curvePoints } = graphHelper(filteredData);
+        setDataPoints(convertedData);
+        setBestFitCurve(curvePoints);
     };
 
+    const getUniqueEntries = (array, numEntries) => {
+        const uniqueArray = Array.from(new Set(array));
+        const shuffledArray = uniqueArray.sort(() => 0.5 - Math.random());
+        return shuffledArray.slice(0, numEntries);
+    }
+
     useEffect(() => {
-        const carIdentifier = `${selectedMake}_${selectedModel}_${selectedYear}`;
+        const carIdentifier = `${selectedMake}_${selectedModel}`;
         setFullCar(carIdentifier);
-        console.log(carIdentifier);
-        if (carIdentifier !== 'none_none_none') {
-            graphHandle(carIdentifier);
+        if (carIdentifier !== 'none_none') {
+            const fetchJsonData = async () => {
+                const jsonData = await getFileFromS3(carIdentifier);
+                setCarData(jsonData)
+            }
+
+            fetchJsonData();
+        }
+    }, [selectedModel]);
+
+    useEffect(() => {
+        if (carData != null) {
+            const filteredData = [];
+            for (let i = 0; i < carData.length; i++) {
+                if (carData[i][0] === +selectedYear) {
+                    filteredData.push(carData[i]);
+                }
+                if (carData[i][0] > selectedYear) {
+                    break;
+                }
+            }
+            console.log(filteredData.length)
+            //graphHandle(getUniqueEntries(filteredData,1000));
         }
     }, [selectedYear]);
 

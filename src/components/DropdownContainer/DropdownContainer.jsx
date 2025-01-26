@@ -42,12 +42,18 @@ const DropdownContainer = () => {
         setSelectedYear("");
     };
 
+    const generateYearRange = (years) => {
+        if (!years || years.length === 0) return [];
+        const minYear = Math.min(...years);
+        const maxYear = Math.max(...years);
+        return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i);
+    };
 
     const handleModelSelect = (model) => {
         setSelectedModel(model);
         setSelectedModelContext(model);
         const foundModel = carModels.find((option) => option.value === selectedMake)?.models.find((option) => option.name === model);
-        setYearOptions(foundModel ? foundModel.year : []); 
+        setYearOptions(foundModel ? generateYearRange(foundModel.year) : []); 
         setSelectedYear(""); 
     };
 
