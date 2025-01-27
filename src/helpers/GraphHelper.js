@@ -8,7 +8,6 @@ export const graphHelper = (jsonData) => {
     };
 
     const convertedData = dataConverter(jsonData);
-    console.log(jsonData);
     const regression = new PolynomialRegression(convertedData.map(point => point.x), convertedData.map(point => point.y), 5);
     const xValues = convertedData.map(point => point.x);
     const minX = Math.min(...xValues);

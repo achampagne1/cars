@@ -29,6 +29,13 @@ const GraphContainer =() => {
         return shuffledArray.slice(0, numEntries);
     }
 
+    const generateYearRange = (years) => {
+        if (!years || years.length === 0) return [];
+        const minYear = Math.min(...years);
+        const maxYear = Math.max(...years);
+        return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i);
+    };
+
     useEffect(() => {
         const carIdentifier = `${selectedMake}_${selectedModel}`;
         setFullCar(carIdentifier);
@@ -44,16 +51,19 @@ const GraphContainer =() => {
 
     useEffect(() => {
         if (carData != null) {
-            var filteredData = []
+            const yearLimits = [+selectedYear1, +selectedYear2];
+            const yearRange = generateYearRange(yearLimits);
+            let filteredData = []
             for (let i = 0; i < carData.length; i++) {
-
-                if (carData[i]["year"] === +selectedYear1) {
-                    filteredData = carData[i]["details"];
+                for (let j = 0; j < yearRange.length; j++) {
+                    if (carData[i]["year"] === yearRange[j]) {
+                        filteredData.push(...carData[i]["details"]);
+                    }
                 }
             }
             graphHandle(getUniqueEntries(filteredData,1000));
         }
-    }, [selectedYear1]);
+    }, [selectedYear1, selectedYear2]);
 
 
     return (
