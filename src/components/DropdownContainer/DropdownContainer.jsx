@@ -68,7 +68,6 @@ const DropdownContainer = () => {
         setSelectedYear1(year);
         setSelectedYear1Context(year);
         const yearLimits = [+year, year1Options[year1Options.length-1]];
-        console.log(yearLimits);
         setYear2Options(year ? generateYearRange(yearLimits) : []); 
 
         if (selectedYear2 === "") { 
