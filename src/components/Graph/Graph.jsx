@@ -5,7 +5,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const Graph = ({ dataPoints, bestFitCurve }) => {
+const Graph = ({newCarData, usedCarData, bestFitCurve }) => {
     const chartData = {
         datasets: [
             {
@@ -17,9 +17,15 @@ const Graph = ({ dataPoints, bestFitCurve }) => {
                 pointRadius: 0,
             },
             {
-                label: 'Individual Listings',
-                data: dataPoints,
-                backgroundColor: 'rgba(75, 192, 192, 1)',
+                label: 'Used Car Listings',
+                data: usedCarData,
+                backgroundColor: 'rgba(0, 174, 239, 1)',
+                pointRadius: 5,
+            },
+            {
+                label: 'New Car Listings',
+                data: newCarData,
+                backgroundColor: 'rgba(245, 0, 55, 1)',
                 pointRadius: 5,
             },
         ],

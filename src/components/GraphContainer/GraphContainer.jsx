@@ -12,14 +12,27 @@ const GraphContainer =() => {
     const { selectedYear1 } = useContext(Context);
     const { selectedYear2 } = useContext(Context);
 
-    const [dataPoints, setDataPoints] = useState([]);
+    const [usedCarData, setUsedCarData] = useState([]);
+    const [newCarData, setNewCarData] = useState([]);
     const [bestFitCurve, setBestFitCurve] = useState([]);
     const [carData, setCarData] = useState(null);
     const [fullCar, setFullCar] = useState('none_none');
 
     const graphHandle = (filteredData) => {
         const { convertedData, curvePoints } = graphHelper(filteredData);
-        setDataPoints(convertedData);
+        const { newCar, usedCar } = convertedData.reduce(
+            (acc, item) => {
+                if (item.x === 0) {
+                    acc.newCar.push(item); // Add to newCar array if x === 0
+                } else {
+                    acc.usedCar.push(item); // Add to usedCar array otherwise
+                }
+                return acc;
+            },
+            { newCar: [], usedCar: [] } // Initial accumulator with empty arrays
+        );
+        setUsedCarData(usedCar);
+        setNewCarData(newCar);
         setBestFitCurve(curvePoints);
     };
 
@@ -68,7 +81,7 @@ const GraphContainer =() => {
 
     return (
         <div className="graph-container">
-            <Graph dataPoints={dataPoints} bestFitCurve={bestFitCurve} />
+            <Graph newCarData={newCarData} usedCarData={usedCarData} bestFitCurve={bestFitCurve} />
             {fullCar === 'none_none' && selectedYear1 === 'none' && (<div className="overlay">Select A Vehicle</div>)}
         </div>
     );
