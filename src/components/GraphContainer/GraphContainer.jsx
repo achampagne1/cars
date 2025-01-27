@@ -43,13 +43,11 @@ const GraphContainer =() => {
 
     useEffect(() => {
         if (carData != null) {
-            const filteredData = [];
+            var filteredData = []
             for (let i = 0; i < carData.length; i++) {
-                if (carData[i][0] === +selectedYear) {
-                    filteredData.push(carData[i]);
-                }
-                if (carData[i][0] > selectedYear) {
-                    break;
+
+                if (carData[i]["year"] === +selectedYear) {
+                    filteredData = carData[i]["details"];
                 }
             }
             graphHandle(getUniqueEntries(filteredData,1000));

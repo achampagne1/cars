@@ -1,7 +1,17 @@
-import { dataConverter } from "./DataConverter";
 import { PolynomialRegression } from 'ml-regression-polynomial';
 export const graphHelper = (jsonData) => {
+    const dataConverter = (dataArray) => {
+        // Map the data to the required format
+        return dataArray.map(item => {
+            const { mileage, price } = item; // Destructure mileage and price
+
+            // Return the new object with x and y
+            return { x: mileage, y: price };
+        });
+    };
+
     const convertedData = dataConverter(jsonData);
+    console.log(jsonData);
     const regression = new PolynomialRegression(convertedData.map(point => point.x), convertedData.map(point => point.y), 5);
     const xValues = convertedData.map(point => point.x);
     const minX = Math.min(...xValues);
@@ -11,6 +21,5 @@ export const graphHelper = (jsonData) => {
         const y = regression.predict(x);
         curvePoints.push({ x, y });
     }
-    console.log("here");
     return { convertedData, curvePoints };
 }
