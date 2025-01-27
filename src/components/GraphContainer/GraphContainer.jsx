@@ -9,7 +9,8 @@ import './GraphContainerStyle.css';
 const GraphContainer =() => {
     const { selectedMake } = useContext(Context);
     const { selectedModel } = useContext(Context);
-    const { selectedYear } = useContext(Context);
+    const { selectedYear1 } = useContext(Context);
+    const { selectedYear2 } = useContext(Context);
 
     const [dataPoints, setDataPoints] = useState([]);
     const [bestFitCurve, setBestFitCurve] = useState([]);
@@ -46,19 +47,19 @@ const GraphContainer =() => {
             var filteredData = []
             for (let i = 0; i < carData.length; i++) {
 
-                if (carData[i]["year"] === +selectedYear) {
+                if (carData[i]["year"] === +selectedYear1) {
                     filteredData = carData[i]["details"];
                 }
             }
             graphHandle(getUniqueEntries(filteredData,1000));
         }
-    }, [selectedYear]);
+    }, [selectedYear1]);
 
 
     return (
         <div className="graph-container">
             <Graph dataPoints={dataPoints} bestFitCurve={bestFitCurve} />
-            {fullCar === 'none_none_none' && (<div className="overlay">Select A Vehicle</div>)}
+            {fullCar === 'none_none' && selectedYear1 === 'none' && (<div className="overlay">Select A Vehicle</div>)}
         </div>
     );
 }

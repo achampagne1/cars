@@ -1,11 +1,8 @@
 import { PolynomialRegression } from 'ml-regression-polynomial';
 export const graphHelper = (jsonData) => {
     const dataConverter = (dataArray) => {
-        // Map the data to the required format
         return dataArray.map(item => {
-            const { mileage, price } = item; // Destructure mileage and price
-
-            // Return the new object with x and y
+            const { mileage, price } = item;
             return { x: mileage, y: price };
         });
     };

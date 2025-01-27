@@ -5,7 +5,8 @@ export const Context = createContext();
 export const ContextProvider = ({ children }) => {
     const [selectedMake, setSelectedMakeContext] = useState('none');
     const [selectedModel, setSelectedModelContext] = useState('none');
-    const [selectedYear, setSelectedYearContext] = useState('none');
+    const [selectedYear1, setSelectedYear1Context] = useState('none');
+    const [selectedYear2, setSelectedYear2Context] = useState('none');
 
 
     return (
@@ -15,8 +16,10 @@ export const ContextProvider = ({ children }) => {
                 setSelectedMakeContext,
                 selectedModel,
                 setSelectedModelContext,
-                selectedYear,
-                setSelectedYearContext,
+                selectedYear1,
+                setSelectedYear1Context,
+                selectedYear2,
+                setSelectedYear2Context,
             }}
         >
             {children}
