@@ -89,7 +89,7 @@ const DropdownContainer = () => {
             <DropdownButton
                 as={ButtonGroup}
                 id="dropdown-make"
-                title={selectedMake || "Select Make"}
+                title={selectedMake || "Make"}
                 onSelect={handleMakeSelect}
             >
                 {carModels.map((make) => (
@@ -103,7 +103,7 @@ const DropdownContainer = () => {
             <DropdownButton
                 as={ButtonGroup}
                 id="dropdown-model"
-                title={selectedModel || (modelOptions.length > 0 ? "Select Model" : "No Models Available")}
+                title={selectedModel || (modelOptions.length > 0 ? "Model" : "Model")}
                 disabled={modelOptions.length === 0}
                 onSelect={handleModelSelect}
             >
@@ -118,7 +118,7 @@ const DropdownContainer = () => {
             <DropdownButton
                 as={ButtonGroup}
                 id="dropdown-year1"
-                title={selectedYear1 || (year1Options.length > 0 ? "Select Year" : "No Years Available")}
+                title={selectedYear1 || (year1Options.length > 0 ? "Year 1" : "Year 1")}
                 disabled={year1Options.length === 0}
                 onSelect={handleYear1Select}
             >
@@ -133,7 +133,7 @@ const DropdownContainer = () => {
             <DropdownButton
                 as={ButtonGroup}
                 id="dropdown-year2"
-                title={selectedYear2 || (year2Options.length > 0 ? "Select Year" : "No Years Available")}
+                title={selectedYear2 || (year2Options.length > 0 ? "Year 2" : "Year 2")}
                 disabled={year2Options.length === 0}
                 onSelect={handleYear2Select}
             >
