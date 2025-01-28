@@ -23,6 +23,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
     min-height: 100vh;
     text-align: center;
     color: white;
@@ -30,7 +31,11 @@ body {
 
 .body h1 {
     font-weight: bold;
+    font-size: clamp(1rem, 5vw, 3rem); 
+    overflow-wrap: break-word; 
+    text-align: center;
 }
+
 
 .dropdown-container {
     margin-bottom: 10px; 
