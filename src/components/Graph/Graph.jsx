@@ -40,14 +40,24 @@ const Graph = ({newCarData, usedCarData, bestFitCurve }) => {
                     display: true,
                     text: 'Miles', // Customize the x-axis label text
                 },
+                ticks: {
+                    callback: function (value) {
+                        return value >= 1000 ? `${value / 1000}k` : value;
+                    }
+                }
             },
             y: {
                 title: {
                     display: true,
                     text: 'Dollars', // Customize the y-axis label text
                 },
-            },
-        },
+                ticks: {
+                    callback: function (value) {
+                        return value >= 1000 ? `${value / 1000}k` : value;
+                    }
+                }
+            }
+        }
     };
 
     return <Scatter data={chartData} options={options} />;

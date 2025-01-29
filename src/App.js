@@ -19,7 +19,10 @@ const App = () => {
                     <div className="dropdown-container">
                         <DropdownContainer />
                     </div>
-                    <GraphContainer/>
+                    <div className="graph-section">
+                        <p className="pricing-trends">Pricing Trends</p>
+                        <GraphContainer />
+                    </div>
                 </div>
                 <div className="footer">
                     <PopupContainer/>
