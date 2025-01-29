@@ -87,8 +87,9 @@ const DropdownContainer = () => {
         <div className="DropdownContainer">
             {/* Dropdown for Make */}
             <DropdownButton
+                className="dropdown-button"
                 as={ButtonGroup}
-                id="dropdown-make"
+                id="dropdown"
                 title={selectedMake || "Make"}
                 onSelect={handleMakeSelect}
             >
@@ -101,8 +102,9 @@ const DropdownContainer = () => {
 
             {/* Dropdown for Model */}
             <DropdownButton
+                className="dropdown-button"
                 as={ButtonGroup}
-                id="dropdown-model"
+                id="dropdown"
                 title={selectedModel || "Model"}
                 disabled={modelOptions.length === 0}
                 onSelect={handleModelSelect}
@@ -116,8 +118,9 @@ const DropdownContainer = () => {
 
             {/* Dropdown for Year 1*/}
             <DropdownButton
+                className="dropdown-button"
                 as={ButtonGroup}
-                id="dropdown-year1"
+                id="dropdown"
                 title={selectedYear1 || "Year 1"}
                 disabled={year1Options.length === 0}
                 onSelect={handleYear1Select}
@@ -131,8 +134,9 @@ const DropdownContainer = () => {
 
             {/* Dropdown for Year 2*/}
             <DropdownButton
+                className="dropdown-button"
                 as={ButtonGroup}
-                id="dropdown-year2"
+                id="dropdown"
                 title={selectedYear2 || "Year 2"}
                 disabled={year2Options.length === 0}
                 onSelect={handleYear2Select}

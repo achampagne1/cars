@@ -1,10 +1,21 @@
 .DropdownContainer {
-    display: flex; /* Use flexbox for layout */
-    flex-direction: row; /* Stack the dropdowns vertically */
-    align-items: flex-start; /* Align dropdowns to the left */
-    gap: 10px; /* Add space between the dropdowns */
+    display: flex; 
+    flex-direction: row; 
+    align-items: flex-start;  
+    background: white;
+    border-radius: 10px; 
 }
 
-.DropdownContainer .dropdown-button {
-    width: 200px; /* Optional: Set a consistent width for dropdowns */
+#dropdown {
+    background-color: #ffffff !important;
+    color: black !important;
+    border: none !important;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#dropdown:hover {
+    /*background-color: #E0E0E0 !important;*/
+    text-decoration: underline;
 }
