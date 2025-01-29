@@ -32,29 +32,56 @@ const Graph = ({newCarData, usedCarData, bestFitCurve }) => {
     };
 
     const options = {
+        responsive: true,
+        maintainAspectRatio: false, 
         scales: {
             x: {
                 type: 'linear',
                 position: 'bottom',
                 title: {
                     display: true,
-                    text: 'Miles', // Customize the x-axis label text
+                    text: 'Miles',
                 },
                 ticks: {
                     callback: function (value) {
                         return value >= 1000 ? `${value / 1000}k` : value;
-                    }
+                    },
+                    autoSkip: true,
+                    maxRotation: 0, 
+                    minRotation: 0
+                },
+                grid: {
+                    drawBorder: false,
+                    drawTicks: false, 
+                    lineWidth: 0 // Make grid lines thinner
                 }
             },
             y: {
                 title: {
                     display: true,
-                    text: 'Dollars', // Customize the y-axis label text
+                    text: 'Dollars',
                 },
                 ticks: {
                     callback: function (value) {
                         return value >= 1000 ? `${value / 1000}k` : value;
-                    }
+                    },
+                    autoSkip: true,
+                    maxRotation: 0,
+                    minRotation: 0
+                },
+                grid: {
+                    drawBorder: false,
+                    drawTicks: false,
+                    lineWidth: 0.3
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: true, // Set to false if you want more space for the chart
+                position: 'top', // Adjust legend position
+                labels: {
+                    boxWidth: 10 // Make legend icons smaller
                 }
             }
         }
