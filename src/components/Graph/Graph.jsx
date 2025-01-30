@@ -5,7 +5,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const Graph = ({newCarData, usedCarData, bestFitCurve }) => {
+const Graph = ({ newCarData, usedCarData, bestFitCurve }) => {
     const chartData = {
         datasets: [
             {
@@ -20,20 +20,20 @@ const Graph = ({newCarData, usedCarData, bestFitCurve }) => {
                 label: 'Used Car Listings',
                 data: usedCarData,
                 backgroundColor: 'rgba(0, 174, 239, 1)',
-                pointRadius: 5,
+                pointRadius: (ctx) => Math.max(ctx.chart.width / 300, 3), // Scales with width, min size 3
             },
             {
                 label: 'New Car Listings',
                 data: newCarData,
                 backgroundColor: 'rgba(245, 0, 55, 1)',
-                pointRadius: 5,
+                pointRadius: (ctx) => Math.max(ctx.chart.width / 300, 3),
             },
         ],
     };
 
     const options = {
         responsive: true,
-        maintainAspectRatio: false, 
+        maintainAspectRatio: false,
         scales: {
             x: {
                 type: 'linear',
@@ -47,14 +47,14 @@ const Graph = ({newCarData, usedCarData, bestFitCurve }) => {
                         return value >= 1000 ? `${value / 1000}k` : value;
                     },
                     autoSkip: true,
-                    maxRotation: 0, 
-                    minRotation: 0
+                    maxRotation: 0,
+                    minRotation: 0,
                 },
                 grid: {
                     drawBorder: false,
-                    drawTicks: false, 
-                    lineWidth: 0 // Make grid lines thinner
-                }
+                    drawTicks: false,
+                    lineWidth: 0,
+                },
             },
             y: {
                 title: {
@@ -67,24 +67,24 @@ const Graph = ({newCarData, usedCarData, bestFitCurve }) => {
                     },
                     autoSkip: true,
                     maxRotation: 0,
-                    minRotation: 0
+                    minRotation: 0,
                 },
                 grid: {
                     drawBorder: false,
                     drawTicks: false,
-                    lineWidth: 0.3
-                }
-            }
+                    lineWidth: 0.3,
+                },
+            },
         },
         plugins: {
             legend: {
-                display: true, // Set to false if you want more space for the chart
-                position: 'top', // Adjust legend position
+                display: true,
+                position: 'top',
                 labels: {
-                    boxWidth: 10 // Make legend icons smaller
-                }
-            }
-        }
+                    boxWidth: 10,
+                },
+            },
+        },
     };
 
     return <Scatter data={chartData} options={options} />;
