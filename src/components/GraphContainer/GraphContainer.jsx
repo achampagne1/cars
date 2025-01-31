@@ -11,6 +11,7 @@ const GraphContainer =() => {
     const { selectedModel } = useContext(Context);
     const { selectedYear1 } = useContext(Context);
     const { selectedYear2 } = useContext(Context);
+    const { setServices } = useContext(Context);
 
     const [usedCarData, setUsedCarData] = useState([]);
     const [newCarData, setNewCarData] = useState([]);
@@ -23,13 +24,13 @@ const GraphContainer =() => {
         const { newCar, usedCar } = convertedData.reduce(
             (acc, item) => {
                 if (item.x === 0) {
-                    acc.newCar.push(item); // Add to newCar array if x === 0
+                    acc.newCar.push(item); 
                 } else {
-                    acc.usedCar.push(item); // Add to usedCar array otherwise
+                    acc.usedCar.push(item); 
                 }
                 return acc;
             },
-            { newCar: [], usedCar: [] } // Initial accumulator with empty arrays
+            { newCar: [], usedCar: [] } 
         );
         setUsedCarData(usedCar);
         setNewCarData(newCar);
@@ -55,6 +56,7 @@ const GraphContainer =() => {
         if (carIdentifier !== 'none_none') {
             const fetchJsonData = async () => {
                 const jsonData = await getFileFromS3(carIdentifier);
+                setServices(jsonData[jsonData.length - 1]);
                 setCarData(jsonData)
             }
 

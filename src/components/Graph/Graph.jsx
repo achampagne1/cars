@@ -6,6 +6,12 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 const Graph = ({ newCarData, usedCarData, bestFitCurve }) => {
+    const getPointSize = (ctx) => {
+        if (!ctx.chart.chartArea) return 5; 
+        const { width, height } = ctx.chart.chartArea;
+        return Math.max(Math.min(width, height) / 100, 3); 
+    };
+
     const chartData = {
         datasets: [
             {
@@ -20,13 +26,13 @@ const Graph = ({ newCarData, usedCarData, bestFitCurve }) => {
                 label: 'Used Car Listings',
                 data: usedCarData,
                 backgroundColor: 'rgba(0, 174, 239, 1)',
-                pointRadius: (ctx) => Math.max(ctx.chart.width / 300, 3), // Scales with width, min size 3
+                pointRadius: getPointSize, // Dynamically scale based on chart size
             },
             {
                 label: 'New Car Listings',
                 data: newCarData,
                 backgroundColor: 'rgba(245, 0, 55, 1)',
-                pointRadius: (ctx) => Math.max(ctx.chart.width / 300, 3),
+                pointRadius: getPointSize,
             },
         ],
     };
