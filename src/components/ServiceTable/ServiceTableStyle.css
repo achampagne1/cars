@@ -1,3 +1,8 @@
-.ServiceTable {
-    /* Add your styles here */
+.service-table {
+    color: black;
+    border-collapse: separate; /* Change from collapse to separate */
+    border-spacing: 0; /* Ensures there are no gaps between cells */
+    border: 2px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensures border-radius applies correctly */
 }
