@@ -20,14 +20,13 @@ const App = () => {
                 </div>
 
                 <div className="body">
-                    <div className="dropdown-container">
-                        <DropdownContainer />
-                    </div>
                     <div className="graph-section">
-                        <p className="pricing-trends">Pricing Trends</p>
+                        <DropdownContainer />
                         <GraphContainer />
                     </div>
-                    <ServiceTable />
+                    <div className="table-section">
+                        <ServiceTable />
+                    </div>
                 </div>
                 <div className="footer">
                     <PopupContainer />

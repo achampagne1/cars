@@ -13,8 +13,11 @@
     background-color: white;
     color: black;
     padding: 5px 5px;
-    border-bottom: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative; 
+    z-index: 10;
 }
+
 
 .header h1 {
     margin: 0;
@@ -24,19 +27,8 @@
 }
 
 .logo {
-    height: 40px; /* Adjust as needed */
-    width: auto; /* Maintain aspect ratio */
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('../public/1698062565960_how-to-start-used-car-dealership-ecarstrade-6_01HDE6N11370VNHPV3XAZETE9J.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
+    height: 40px; 
+    width: auto;
 }
 
 
@@ -55,34 +47,34 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     text-align: center;
     color: white;
-    padding-top: 20px;
     opacity: 0;
-    animation: fadeIn .2s ease-in-out forwards;
-}
-
-
-
-.dropdown-container {
-    margin-bottom: 10px; 
+    animation: fadeIn 0.2s ease-in-out forwards;
+    position: relative;
+    z-index: 9;
 }
 
 .graph-section {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
-    max-width: 1000px; 
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-family: Arial, sans-serif;
+    background-image: url('../public/1698062565960_how-to-start-used-car-dealership-ecarstrade-6_01HDE6N11370VNHPV3XAZETE9J.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.pricing-trends {
-    margin: 0; 
-    padding: 0;
-    font-size: 1rem;
-    color: white;
-    align-self: flex-start;
+.DropdownContainer {
+    margin-bottom: 20px;
 }
 
 .footer {
