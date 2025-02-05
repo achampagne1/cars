@@ -7,7 +7,7 @@ export const ContextProvider = ({ children }) => {
     const [selectedModel, setSelectedModelContext] = useState('none');
     const [selectedYear1, setSelectedYear1Context] = useState('none');
     const [selectedYear2, setSelectedYear2Context] = useState('none');
-    const [services, setServices] = useState(null);
+    const [services, setServices] = useState([]);
 
 
     return (

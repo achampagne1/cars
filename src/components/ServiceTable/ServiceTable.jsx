@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../../ContextProvider';
 import './ServiceTableStyle.css';
 
 const ServiceTable = () => {
-    const serviceIntervals = [
-        { mileage: "5,000 miles", service: "Oil & filter change, Tire rotation, Brake inspection, Fluid level check" },
-        { mileage: "10,000 miles", service: "Synthetic oil & filter change, Inspect wiper blades, Top off all fluids" },
-        { mileage: "15,000 miles", service: "Inspect cabin air filter, Engine air filter, Brake system, Suspension" },
-        { mileage: "30,000 miles", service: "Replace engine & cabin air filter, Inspect fuel system & connections" },
-        { mileage: "60,000 miles", service: "Inspect/replace spark plugs, Inspect drive belts" },
-        { mileage: "100,000 miles", service: "Inspect coolant system, Replace transmission fluid if required" }
-    ];
+    const { services } = useContext(Context);
+
+    const serviceList = services?.services ?? [];
 
     return (
         <table className="service-table">
@@ -20,10 +16,10 @@ const ServiceTable = () => {
                 </tr>
             </thead>
             <tbody>
-                {serviceIntervals.map((interval, index) => (
+                {serviceList.map((serviceList, index) => (
                     <tr key={index}>
-                        <td>{interval.mileage}</td>
-                        <td>{interval.service}</td>
+                        <td>{serviceList.mileage.toLocaleString()} miles</td>
+                        <td>{serviceList.service}</td>
                     </tr>
                 ))}
             </tbody>

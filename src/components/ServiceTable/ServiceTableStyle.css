@@ -1,8 +1,8 @@
 .service-table {
     color: black;
-    border-collapse: separate; /* Change from collapse to separate */
-    border-spacing: 0; /* Ensures there are no gaps between cells */
-    border: 2px solid #ccc; /* Light gray border */
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Ensures border-radius applies correctly */
+    border-collapse: separate; /* Ensures border and border-radius work */
+    border-spacing: 0; /* Removes gaps between cells */
+    border-radius: 2px; /* Slightly more visible rounded corners */
+    overflow: hidden; /* Ensures rounded corners are applied */
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around the table */
 }
