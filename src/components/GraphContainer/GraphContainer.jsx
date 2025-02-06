@@ -12,6 +12,7 @@ const GraphContainer =() => {
     const { selectedYear1 } = useContext(Context);
     const { selectedYear2 } = useContext(Context);
     const { setServices } = useContext(Context);
+    const { setIssues } = useContext(Context);
 
     const [usedCarData, setUsedCarData] = useState([]);
     const [newCarData, setNewCarData] = useState([]);
@@ -56,7 +57,8 @@ const GraphContainer =() => {
         if (carIdentifier !== 'none_none') {
             const fetchJsonData = async () => {
                 const jsonData = await getFileFromS3(carIdentifier);
-                setServices(jsonData[jsonData.length - 1]);
+                setServices(jsonData[jsonData.length - 2]);
+                setIssues(jsonData[jsonData.length - 1]);
                 setCarData(jsonData)
             }
 

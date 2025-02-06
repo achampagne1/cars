@@ -4,6 +4,7 @@ import DropdownContainer from './components/DropdownContainer'
 import { ContextProvider } from './ContextProvider';
 import GraphContainer from "./components/GraphContainer";
 import PopupContainer from "./components/PopupContainer";
+import IssuesTable from "./components/IssuesTable";
 import ServiceTable from "./components/ServiceTable";
 import { Amplify } from 'aws-amplify';
 import awsconfig from "./aws-exports";
@@ -26,6 +27,7 @@ const App = () => {
                     </div>
                     <div className="table-section">
                         <ServiceTable />
+                        <IssuesTable />
                     </div>
                 </div>
                 <div className="footer">

@@ -8,6 +8,7 @@ export const ContextProvider = ({ children }) => {
     const [selectedYear1, setSelectedYear1Context] = useState('none');
     const [selectedYear2, setSelectedYear2Context] = useState('none');
     const [services, setServices] = useState([]);
+    const [issues, setIssues] = useState([]);
 
 
     return (
@@ -22,7 +23,9 @@ export const ContextProvider = ({ children }) => {
                 selectedYear2,
                 setSelectedYear2Context,
                 services,
-                setServices
+                setServices,
+                issues,
+                setIssues
             }}
         >
             {children}
