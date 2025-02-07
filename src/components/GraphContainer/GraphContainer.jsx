@@ -51,6 +51,45 @@ const GraphContainer =() => {
         return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i);
     };
 
+    const removeOutliers = (data) => {
+        // Define mileage bin size (e.g., 5000-mile intervals)
+        const binSize = 5000;
+        let mileageBins = {};
+
+        // Group data by mileage bins
+        data.forEach((item) => {
+            const mileage = item.mileage;
+            const bin = Math.floor(mileage / binSize) * binSize; // Round mileage to bin
+
+            if (!mileageBins[bin]) {
+                mileageBins[bin] = [];
+            }
+            mileageBins[bin].push(item.price);
+        });
+
+        let filteredData = [];
+
+        // Iterate over each mileage bin and remove price outliers
+        Object.keys(mileageBins).forEach((bin) => {
+            let prices = mileageBins[bin];
+
+            // Compute mean and standard deviation of prices
+            const mean = prices.reduce((sum, p) => sum + p, 0) / prices.length;
+            const stdDev = Math.sqrt(prices.reduce((sum, p) => sum + Math.pow(p - mean, 2), 0) / prices.length);
+
+            // Keep data points within 2 standard deviations of the mean
+            data.forEach((item) => {
+                if (Math.floor(item.mileage / binSize) * binSize === +bin) {
+                    if (Math.abs(item.price - mean) <= 2 * stdDev) {
+                        filteredData.push(item);
+                    }
+                }
+            });
+        });
+
+        return filteredData;
+    };
+
     useEffect(() => {
         const carIdentifier = `${selectedMake}_${selectedModel}`;
         setFullCar(carIdentifier);
@@ -67,19 +106,23 @@ const GraphContainer =() => {
     }, [selectedModel]);
 
     useEffect(() => {
-        if (carData != null) {
-            const yearLimits = [+selectedYear1, +selectedYear2];
-            const yearRange = generateYearRange(yearLimits);
-            let filteredData = []
-            for (let i = 0; i < carData.length; i++) {
-                for (let j = 0; j < yearRange.length; j++) {
-                    if (carData[i]["year"] === yearRange[j]) {
-                        filteredData.push(...carData[i]["details"]);
-                    }
+        if (carData == null)
+            return;
+
+        const yearLimits = [+selectedYear1, +selectedYear2];
+        const yearRange = generateYearRange(yearLimits);
+        let filteredData = [];
+
+        for (let i = 0; i < carData.length; i++) {
+            for (let j = 0; j < yearRange.length; j++) {
+                if (carData[i]["year"] === yearRange[j]) {
+                    filteredData.push(...carData[i]["details"]);
                 }
             }
-            graphHandle(getUniqueEntries(filteredData,1000));
         }
+        const cleanedData = removeOutliers(filteredData);
+
+        graphHandle(getUniqueEntries(cleanedData,1000));
     }, [selectedYear1, selectedYear2]);
 
 

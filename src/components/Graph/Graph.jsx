@@ -2,7 +2,6 @@ import React from 'react';
 import { Scatter } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
-// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 const Graph = ({ newCarData, usedCarData, bestFitCurve }) => {
@@ -26,7 +25,7 @@ const Graph = ({ newCarData, usedCarData, bestFitCurve }) => {
                 label: 'Used Car Listings',
                 data: usedCarData,
                 backgroundColor: 'rgba(0, 174, 239, 1)',
-                pointRadius: getPointSize, // Dynamically scale based on chart size
+                pointRadius: getPointSize,
             },
             {
                 label: 'New Car Listings',
@@ -89,6 +88,9 @@ const Graph = ({ newCarData, usedCarData, bestFitCurve }) => {
                 labels: {
                     boxWidth: 10,
                 },
+            },
+            tooltip: {
+                enabled: false, // Disable tooltips
             },
         },
     };
