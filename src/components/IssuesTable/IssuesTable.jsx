@@ -5,7 +5,6 @@ import './IssuesTableStyle.css';
 const IssuesTable = () => {
     const { issues } = useContext(Context);
     const issueList = Array.isArray(issues?.issues) ? issues.issues : [];
-    console.log(issueList);
 
     return (
         <table className="issues-table">

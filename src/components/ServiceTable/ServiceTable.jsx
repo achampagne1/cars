@@ -5,7 +5,6 @@ import './ServiceTableStyle.css';
 const ServiceTable = () => {
     const { services } = useContext(Context);
     const serviceList = services?.services ?? [];
-    console.log(serviceList);
 
     return (
         <table className="service-table">
