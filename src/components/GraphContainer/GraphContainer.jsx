@@ -122,7 +122,7 @@ const GraphContainer =() => {
         }
         const cleanedData = removeOutliers(filteredData);
 
-        graphHandle(getUniqueEntries(cleanedData,1000));
+        graphHandle(getUniqueEntries(cleanedData,500));
     }, [selectedYear1, selectedYear2]);
 
 
