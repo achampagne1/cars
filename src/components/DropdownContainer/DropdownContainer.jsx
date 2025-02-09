@@ -45,6 +45,8 @@ const DropdownContainer = () => {
         setYear2Options([]); 
         setSelectedYear1("");
         setSelectedYear2("");
+        setSelectedYear1Context("");
+        setSelectedYear2Context("");
     };
 
     const generateYearRange = (years) => {
@@ -61,6 +63,8 @@ const DropdownContainer = () => {
         setYear1Options(foundModel ? generateYearRange(foundModel.year) : []); 
         setSelectedYear1(""); 
         setSelectedYear2("");
+        setSelectedYear1Context("");
+        setSelectedYear2Context("");
     };
 
 

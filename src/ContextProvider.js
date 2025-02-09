@@ -10,7 +10,6 @@ export const ContextProvider = ({ children }) => {
     const [services, setServices] = useState([]);
     const [issues, setIssues] = useState([]);
 
-
     return (
         <Context.Provider
             value={{

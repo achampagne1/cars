@@ -106,7 +106,7 @@ const GraphContainer =() => {
     }, [selectedModel]);
 
     useEffect(() => {
-        if (carData == null)
+        if (carData == null || selectedYear1 === "")
             return;
 
         const yearLimits = [+selectedYear1, +selectedYear2];
