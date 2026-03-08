@@ -90,7 +90,7 @@ const Graph = ({ newCarData, usedCarData, bestFitCurve }) => {
                 },
             },
             tooltip: {
-                enabled: false, // Disable tooltips
+                enabled: false,
             },
         },
     };

@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import DropdownContainer from './components/DropdownContainer'
+import DropdownContainer from './components/DropdownContainer';
 import { ContextProvider } from './ContextProvider';
 import GraphContainer from "./components/GraphContainer";
 import PopupContainer from "./components/PopupContainer";
@@ -33,6 +33,11 @@ const App = () => {
                 <div className="footer">
                     <PopupContainer />
                     <p>&copy; 2025 Auto Hassle. All rights reserved.</p>
+                    <a href="https://switchtrackapp.com" target="_blank" rel="noopener noreferrer">
+                        <button className="privacyPolicyButton">
+                            Try Switch Track
+                        </button>
+                    </a>
                 </div>
             </div>
         </ContextProvider>

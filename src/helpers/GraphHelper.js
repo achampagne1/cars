@@ -10,7 +10,7 @@ export const graphHelper = (jsonData) => {
     const convertedData = dataConverter(jsonData);
     console.log(convertedData);
     if (convertedData.length === 0 || convertedData.length === 1) {
-        const curvePoints = { x: 0, y: 0 }
+        const curvePoints = { x: 0, y: 0 };
         return { convertedData,curvePoints };
     }
     const regression = new PolynomialRegression(convertedData.map(point => point.x), convertedData.map(point => point.y), 5);
